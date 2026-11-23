@@ -1,0 +1,283 @@
+/* Paleta (ajuste/registre no Adobe Color se quiser outra):
+   fundo #F4F6FB | texto #1B2238 | primária #2F4BD8 | destaque #F2B705
+   certo #1E7B4F | errado #B3261E | bordas #D5DAEA */
+:root {
+  --fundo: #f4f6fb;
+  --superficie: #ffffff;
+  --texto: #1b2238;
+  --texto-suave: #4a5273;
+  --primaria: #2f4bd8;
+  --primaria-escura: #2339a8;
+  --destaque: #f2b705;
+  --certo: #1e7b4f;
+  --certo-fundo: #e3f4ea;
+  --errado: #b3261e;
+  --errado-fundo: #fbe7e5;
+  --borda: #d5daea;
+  --raio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.topo {
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 4px solid var(--destaque);
+}
+
+.topo h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--primaria);
+}
+
+.topo p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 20px;
+}
+
+.cartao h2 {
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+}
+
+/* Progresso */
+.progresso-texto {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.barra {
+  height: 10px;
+  background: var(--borda);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barra-preenchida {
+  height: 100%;
+  background: var(--primaria);
+  transition: width 0.3s ease;
+}
+
+/* Opções */
+.opcoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.opcao {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font: inherit;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 12px;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+.opcao:hover:not(:disabled) {
+  border-color: var(--primaria);
+}
+
+.opcao:disabled {
+  cursor: default;
+}
+
+.opcao .letra {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--fundo);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.opcao-selecionada {
+  border-color: var(--primaria);
+  background: #eaeeff;
+}
+
+.opcao-certa {
+  border-color: var(--certo);
+  background: var(--certo-fundo);
+}
+
+.opcao-errada {
+  border-color: var(--errado);
+  background: var(--errado-fundo);
+}
+
+/* Feedback */
+.feedback {
+  border-radius: var(--raio);
+  padding: 14px 16px;
+  border-left: 6px solid;
+}
+
+.feedback p {
+  margin: 4px 0 0;
+}
+
+.feedback-certo {
+  background: var(--certo-fundo);
+  border-color: var(--certo);
+  color: #0f4d31;
+}
+
+.feedback-errado {
+  background: var(--errado-fundo);
+  border-color: var(--errado);
+  color: #7d1a15;
+}
+
+/* Botões */
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 700;
+  border-radius: var(--raio);
+  border: 2px solid transparent;
+  padding: 14px 20px;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+.btn-primario {
+  background: var(--primaria);
+  color: #fff;
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: var(--primaria-escura);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--primaria);
+  border-color: var(--primaria);
+}
+
+.btn:disabled {
+  background: var(--borda);
+  color: var(--texto-suave);
+  cursor: not-allowed;
+}
+
+.btn:focus-visible,
+.opcao:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+/* No celular, o botão principal fica sempre ao alcance do polegar */
+.acoes-fixas {
+  position: sticky;
+  bottom: 0;
+  padding: 8px 0;
+  background: linear-gradient(to top, var(--fundo) 70%, transparent);
+}
+
+/* Resultado */
+.resultado {
+  text-align: center;
+}
+
+.placar {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primaria);
+  margin: 0;
+}
+
+.placar span {
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+.rodape {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* Telas maiores (computador) */
+@media (min-width: 640px) {
+  .app {
+    padding: 32px 16px;
+  }
+
+  .cartao {
+    padding: 28px;
+  }
+
+  .cartao h2 {
+    font-size: 1.3rem;
+  }
+
+  .acoes {
+    flex-direction: row;
+  }
+
+  .acoes-fixas {
+    position: static;
+    background: none;
+    padding: 0;
+    justify-content: flex-end;
+  }
+}
